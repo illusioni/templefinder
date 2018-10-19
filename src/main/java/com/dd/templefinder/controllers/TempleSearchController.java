@@ -10,10 +10,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class TempleSearchController {
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String fetchAll(Map<String, Object> model) {
 		return "index";
 		
 	}
 
+	@RequestMapping(value = "/getTemples", method = RequestMethod.GET)
+	public String searchTemplesList(Map<String, Object> model) {
+		return "searchResults";
+		
+	}
 }
