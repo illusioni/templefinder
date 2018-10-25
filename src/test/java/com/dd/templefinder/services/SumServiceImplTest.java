@@ -1,5 +1,7 @@
 package com.dd.templefinder.services;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -29,11 +31,21 @@ public class SumServiceImplTest extends AbstractTestNGSpringContextTests {
 
 	@DataProvider(name="addProvider")
 	Object[][] addInputs(){
-		return new Object[][] {
-			{0,0,0},
-			{0,1,1},
-			{1,1,2},
-		};
+		Object[][] res = new Object[10][3];
+		res[0] = new Object[]{0,0,0};
+		res[1] = new Object[]{0,1,1};
+		res[2] = new Object[]{1,1,2};
+		
+		Random r = new Random(System.currentTimeMillis());
+		for (int i=3; i<10; i++) {
+			int a = r.nextInt();
+			int b = r.nextInt();
+			res[i] = new Object[] {
+				a , b, a+b
+			};
+		}
+		
+		return res;
 	}
 
 	@Test(dataProvider="addProvider")
