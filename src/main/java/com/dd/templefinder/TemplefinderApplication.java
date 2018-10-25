@@ -9,8 +9,13 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("com.dd.templefinder")
 public class TemplefinderApplication {
 	
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(TemplefinderApplication.class, args);
 	}
+	
+	
 	
 }

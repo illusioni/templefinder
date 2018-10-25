@@ -19,7 +19,7 @@
 						<td>Krishna Temple</td>
 						<td><img id="templeImage"
 							src="/assets/images/krishna_image.jpeg" alt="krihsnaImage" /></td>
-						
+
 						<td>Address:GoetheStraße 11001 Munich</td>
 						<td><a href="#">Directions</a></td>
 						<td><a href="#">Rituals</a></td>
@@ -28,7 +28,7 @@
 						<td>Ganesh Temple</td>
 						<td><img id="templeImage"
 							src="/assets/images/ganesh_image.jpg" alt="ganeshImage" /></td>
-						
+
 						<td>Address:Barthstr 80339 DonneBergerbruke</td>
 						<td><a href="#">Directions</a></td>
 						<td><a href="#">Rituals</a></td>
@@ -37,7 +37,7 @@
 						<td>Shiva Temple</td>
 						<td><img id="templeImage"
 							src="/assets/images/ganesh_image.jpg" alt="ganeshImage" /></td>
-						
+
 						<td>Address:Barthstr Laim</td>
 						<td><a href="#">Directions</a></td>
 						<td><a href="#">Rituals</a></td>
@@ -46,10 +46,17 @@
 						<td>Gurunanak Temple</td>
 						<td><img id="templeImage"
 							src="/assets/images/ganesh_image.jpg" alt="ganeshImage" /></td>
-						
+
 						<td>Address:Barthstr Karsfeld</td>
 						<td><a href="#">Directions</a></td>
 						<td><a href="#">Rituals</a></td>
+					</tr>
+					<tr>
+					<c:forEach var="temple" items="${templeList}">
+						<td>${temple.templeName}</td>
+						<td>${temple.templeTimings}</td>
+						<td>${temple.addressModel.streetName}</td>
+					</c:forEach>
 					</tr>
 				</table>
 			</div>
