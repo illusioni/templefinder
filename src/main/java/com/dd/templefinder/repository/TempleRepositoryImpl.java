@@ -27,7 +27,7 @@ public class TempleRepositoryImpl implements TempleRepositoryI {
 		return templeModel;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.dd.templefinder.repository.TempleRepositoryI#getAllTempleDetails()
 	 */
 	@Override
@@ -35,9 +35,6 @@ public class TempleRepositoryImpl implements TempleRepositoryI {
 		 ObjectMapper objectMapper = new ObjectMapper();
 		 File file = ResourceUtils.getFile("classpath:templesData.json");
 		 templeModel = objectMapper.readValue(file, TempleModel.class);
-		 System.out.println("The address is::" + templeModel.getAddressModel().getCityName());
-		 System.out.println("The event details::" + templeModel.getEventModel().getEventName());
-		 System.out.println(templeModel.getTempleName());
 		 return templeModel; 
 	}
 
