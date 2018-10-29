@@ -9,6 +9,6 @@ public interface TempleSearchServiceI {
 
 	List<TempleModel> getAllTemples() throws IOException;
 
-	List<TempleModel> searchTemplesByName(String searchString);
+	TempleModel searchTemplesByName(TempleModel searchModel) throws IOException;
 
 }

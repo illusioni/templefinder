@@ -51,13 +51,15 @@
 						<td><a href="#">Directions</a></td>
 						<td><a href="#">Rituals</a></td>
 					</tr>
-					<tr>
+
 					<c:forEach var="temple" items="${templeList}">
-						<td>${temple.templeName}</td>
-						<td>${temple.templeTimings}</td>
-						<td>${temple.addressModel.streetName}</td>
+						<tr>
+							<td>${temple.templeName}</td>
+							<td>${temple.templeTimings}</td>
+							<td>${temple.addressModel.streetName}</td>
+						</tr>
 					</c:forEach>
-					</tr>
+
 				</table>
 			</div>
 		</div>

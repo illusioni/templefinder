@@ -12,8 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dd.templefinder.models.TempleModel;
@@ -52,9 +54,12 @@ public class TempleSearchController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/getTemples", method = RequestMethod.GET)
-	public String searchTemplesList(Model model) throws IOException {
-    	logger.debug("Hello I am debug logger");
-		return "searchResults";
+	@RequestMapping(value = "/getTemples/{search}", method = RequestMethod.GET)
+	public String searchTemplesList(@PathVariable("search") String searchString, Model model) throws IOException {
+		TempleModel tempelSearchModel = new TempleModel();
+		tempelSearchModel.setTempleName(searchString);
+		TempleModel templeResultModel = templeService.searchTemplesByName(tempelSearchModel);
+		model.addAttribute("temple",templeResultModel);
+		return "templeDetailedPage";
 	}
 }

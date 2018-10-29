@@ -18,14 +18,14 @@ public class TempleSearchServiceImplTest extends AbstractTestNGSpringContextTest
 
 	@Autowired
 	TempleSearchServiceI templeSearchServiceImpl ;
-	
+
 	List<TempleModel> templeModelList = new ArrayList<TempleModel>();
+
 	/**
 	 * To test the Default search of find all the temples in the city
 	 * This data provider is to test the getAll Temple Details
 	 * 
 	 */
-
 	@DataProvider(name="templeModelProvider")
 	Object[][] setTempleDetails(){
 		Object[][] res = new Object[1][1];
@@ -38,6 +38,7 @@ public class TempleSearchServiceImplTest extends AbstractTestNGSpringContextTest
 				};
 		return res;
 	}
+
 	/**
 	 * Test to Fetch all the temples data
 	 */

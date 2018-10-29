@@ -1,5 +1,6 @@
 package com.dd.templefinder.models;
 
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -7,14 +8,14 @@ import java.util.List;
  * @author aditya
  *
  */
-public class TempleModel {
+public class TempleModel implements Comparable<TempleModel>{
 
 	private String templeName;
 	private String templeTimings;
 	private AddressModel addressModel;
 	private EventModel eventModel;
 	private List<String> images;
-	
+
 	public String getTempleName() {
 		return templeName;
 	}
@@ -36,14 +37,14 @@ public class TempleModel {
 	public void setTempleTimings(String templeTimings) {
 		this.templeTimings = templeTimings;
 	}
-	
+
 	@Override
 	public String toString() {
-		 StringBuilder sb = new StringBuilder();
-	        sb.append("----------Temple Information-----------");
-	        sb.append("Templename: " + getTempleName() + "\n");
-	        sb.append("TempleTimings:  " + getTempleTimings() + "\n");
-	        return sb.toString();
+		StringBuilder sb = new StringBuilder();
+		sb.append("----------Temple Information-----------");
+		sb.append("Templename: " + getTempleName() + "\n");
+		sb.append("TempleTimings:  " + getTempleTimings() + "\n");
+		return sb.toString();
 	}
 	/**
 	 * @return
@@ -75,6 +76,8 @@ public class TempleModel {
 	public void setImages(List<String> images) {
 		this.images = images;
 	}
-	
-	
+	@Override
+	public int compareTo(TempleModel templeModel) {
+		return this.templeName.compareTo(templeModel.templeName);
+	}
 }

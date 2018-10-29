@@ -1,4 +1,41 @@
-{
+[{
 	"templeName": "Ganesh Temple",
-	"templeTimings": "15:30-18:00"
+	"templeTimings": "15:30-18:00",
+	"addressModel": {
+		"streetName": "Lessingstraße",
+		"houseNo": "9c",
+		"postalCode": "10583",
+		"cityName": "Munich"
+	},
+	"images": [
+		"ganesh_1.jpg",
+		"ganesh_2.jpg"
+	],
+	"eventModel": {
+		"eventName": "Special Pooja",
+		"eventPrice": "120 Euros",
+		"eventTimings": "06:00-19:00",
+		"otherDetails": "not there"
+	}
+},
+{
+	"templeName": "Sri Krishna Meditation center",
+	"templeTimings": "14:30-18:00",
+	"addressModel": {
+		"streetName": "GoetheStraße",
+		"houseNo": "45",
+		"postalCode": "72121",
+		"cityName": "Munich"
+	},
+	"images": [
+		"krishna_1.jpg",
+		"krishna_2.jpg"
+	],
+	"eventModel": {
+		"eventName": "Krishna pooja",
+		"eventPrice": "40 Euros",
+		"eventTimings": "04:00-20:00",
+		"otherDetails": "Temple is open on all day Sunday"
+	}
 }
+]
