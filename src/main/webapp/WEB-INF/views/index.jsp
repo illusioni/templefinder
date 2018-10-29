@@ -7,16 +7,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Temple Finder App</title>
 <%@ include file="/WEB-INF/views/includes/assets.jsp"%>
-<script src="<c:url value='/assets/js/app/app.js' />" type="text/javascript"></script>
- <link type="text/css" href="<c:url value='/assets/css/app/app.css' />" rel="stylesheet" />
+<script src="<c:url value='/assets/js/app/app.js' />"
+	type="text/javascript"></script>
+<link type="text/css" href="<c:url value='/assets/css/app/app.css' />"
+	rel="stylesheet" />
 </head>
 <body>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					<a class="navbar-brand">Temple Finder - Find Temples in your
-						city</a>
+					<a class="navbar-brand"
+						style="color: #2980B9; font-family: 'Bungee Inline'; font-size: 29px">Temple
+						Finder</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarSupportedContent"
 						aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -26,8 +29,9 @@
 				</nav>
 				<form id="searchForm" class="entireForm">
 					<div class="form-group text-center">
-						<input type="text" class="form-control" id="searchText"
-							placeholder="Temple Name">
+						<label class="subHeadingCity">Find Temples in your city</label> 
+						<input type="text"
+							class="form-control" id="searchText" placeholder="Temple Name">
 					</div>
 					<div class="text-center">
 						<button type="button" id="searchButton"
