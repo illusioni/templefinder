@@ -10,7 +10,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
-import com.dd.templefinder.models.TempleModel;
+import com.dd.templefinder.models.Temple;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -20,30 +20,29 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class TempleSearchServiceImpl implements TempleSearchServiceI {
 
-
-	private List<TempleModel> templeModelList = new ArrayList<TempleModel>();
 	ObjectMapper objectMapper = new ObjectMapper();
 	/** 
 	 * @see com.dd.templefinder.services.TempleSearchServiceI#getAllTemples()
 	 */
 	@Override
-	public List<TempleModel> getAllTemples() throws IOException {
+	public List<Temple> getAllTemples() throws IOException {
+		List<Temple> templeList = new ArrayList<Temple>();
 		File file = ResourceUtils.getFile("classpath:templeData.json");		
-		templeModelList = Arrays.asList(objectMapper.readValue(file, TempleModel[].class));
-		return templeModelList;
+		templeList = Arrays.asList(objectMapper.readValue(file, Temple[].class));
+		return templeList;
 	}
 
 	/** 
-	 * @see com.dd.templefinder.services.TempleSearchServiceI#searchTemplesByName(java.lang.String)
+	 * @see com.dd.templefinder.services.TempleSearchServiceI#searchTemples(java.lang.String)
 	 */
 	@Override
-	public TempleModel searchTemplesByName(TempleModel searchModel) throws IOException{
+	public Temple searchTemples(Temple searchModel) throws IOException{
+		List<Temple> templeList = new ArrayList<Temple>();
 		File file = ResourceUtils.getFile("classpath:templeData.json");	
-		templeModelList = Arrays.asList(objectMapper.readValue(file, TempleModel[].class));
-		Collections.sort(templeModelList);
-		int index = Collections.binarySearch(templeModelList, searchModel);
-		System.out.println(templeModelList.get(index).getAddressModel().getStreetName());
-		return templeModelList.get(index);
+		templeList = Arrays.asList(objectMapper.readValue(file, Temple[].class));
+		Collections.sort(templeList);
+		int index = Collections.binarySearch(templeList, searchModel);
+		return templeList.get(index);
 	}
 
 }

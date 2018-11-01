@@ -2,15 +2,15 @@ package com.dd.templefinder.repository;
 
 import java.io.IOException;
 
-import com.dd.templefinder.models.TempleModel;
+import com.dd.templefinder.models.Temple;
 
 public interface TempleRepositoryI {
 
-	TempleModel getTempleModel();
+	Temple getTemple();
 
 	/**
 	 * 
 	 */
-	TempleModel getAllTempleDetails() throws IOException;
+	Temple getAllTempleDetails() throws IOException;
 
 }

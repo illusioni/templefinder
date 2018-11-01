@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ResourceUtils;
 
-import com.dd.templefinder.models.TempleModel;
+import com.dd.templefinder.models.Temple;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -17,13 +17,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Repository
 public class TempleRepositoryImpl implements TempleRepositoryI {
 	
-	private TempleModel templeModel;
+	private Temple templeModel;
 	
 	/* (non-Javadoc)
 	 * @see com.dd.templefinder.repository.TempleRepositoryI#getTempleModel()
 	 */
 	@Override
-	public TempleModel getTempleModel() {
+	public Temple getTemple() {
 		return templeModel;
 	}
 
@@ -31,10 +31,10 @@ public class TempleRepositoryImpl implements TempleRepositoryI {
 	 * @see com.dd.templefinder.repository.TempleRepositoryI#getAllTempleDetails()
 	 */
 	@Override
-	public TempleModel getAllTempleDetails() throws IOException {
+	public Temple getAllTempleDetails() throws IOException {
 		 ObjectMapper objectMapper = new ObjectMapper();
 		 File file = ResourceUtils.getFile("classpath:templesData.json");
-		 templeModel = objectMapper.readValue(file, TempleModel.class);
+		 templeModel = objectMapper.readValue(file, Temple.class);
 		 return templeModel; 
 	}
 

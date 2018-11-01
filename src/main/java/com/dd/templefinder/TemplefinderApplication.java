@@ -15,7 +15,4 @@ public class TemplefinderApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TemplefinderApplication.class, args);
 	}
-	
-	
-	
 }

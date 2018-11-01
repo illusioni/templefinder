@@ -3,12 +3,12 @@ package com.dd.templefinder.services;
 import java.io.IOException;
 import java.util.List;
 
-import com.dd.templefinder.models.TempleModel;
+import com.dd.templefinder.models.Temple;
 
 public interface TempleSearchServiceI {
 
-	List<TempleModel> getAllTemples() throws IOException;
+	List<Temple> getAllTemples() throws IOException;
 
-	TempleModel searchTemplesByName(TempleModel searchModel) throws IOException;
+	Temple searchTemples(Temple searchModel) throws IOException;
 
 }

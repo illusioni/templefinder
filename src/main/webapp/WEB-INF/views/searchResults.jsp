@@ -30,30 +30,20 @@
 					</button>
 				</nav>
 				<div id="resultsDiv">
-					<div id="tableResultsDiv">
+					<div id="tableResultsDiv" class="backGroundHeroImage">
 						<table class="table table-hover">
 							<thead>
 							</thead>
-							<tr>
-								<td>Krishna Temple</td>
-								<td>GoetheStraße<br /> 11001 Munich
-								</td>
-								<td><img id="templeImage"
-									src="/assets/images/krishna_image.jpeg" alt="krihsnaImage" /></td>
-								<td><a href="#">Directions</a></td>
-								<td><a href="#">Rituals</a></td>
-							</tr>
 							<c:forEach var="temple" items="${templeList}">
 								<tr>
 									<td>${temple.templeName}</td>
-									<td>${temple.addressModel.streetName}</td>
+									<td>${temple.address.streetName}</td>
 									<td><img id="templeImage"
 										src="/assets/images/krishna_image.jpeg" alt="krihsnaImage" /></td>
 									<td><a href="#">Directions</a></td>
 									<td><a href="#">Rituals</a></td>
 								</tr>
 							</c:forEach>
-
 						</table>
 					</div>
 				</div>

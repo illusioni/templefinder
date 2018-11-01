@@ -27,7 +27,7 @@
 						<span class="navbar-toggler-icon"></span>
 					</button>
 				</nav>
-				<form id="searchForm" class="entireForm">
+				<form id="searchForm" class="entireForm backGroundHeroImage">
 					<div class="form-group text-center">
 						<label class="subHeadingCity">Find Temples in your city</label> 
 						<input type="text"

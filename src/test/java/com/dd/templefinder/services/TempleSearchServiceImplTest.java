@@ -11,7 +11,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.dd.templefinder.models.TempleModel;
+import com.dd.templefinder.models.Temple;
 
 @SpringBootTest(classes=TempleSearchServiceImpl.class)
 public class TempleSearchServiceImplTest extends AbstractTestNGSpringContextTests {
@@ -19,7 +19,7 @@ public class TempleSearchServiceImplTest extends AbstractTestNGSpringContextTest
 	@Autowired
 	TempleSearchServiceI templeSearchServiceImpl ;
 
-	List<TempleModel> templeModelList = new ArrayList<TempleModel>();
+	List<Temple> templeModelList = new ArrayList<Temple>();
 
 	/**
 	 * To test the Default search of find all the temples in the city
@@ -29,7 +29,7 @@ public class TempleSearchServiceImplTest extends AbstractTestNGSpringContextTest
 	@DataProvider(name="templeModelProvider")
 	Object[][] setTempleDetails(){
 		Object[][] res = new Object[1][1];
-		TempleModel expedctedModel = new TempleModel();
+		Temple expedctedModel = new Temple();
 		expedctedModel.setTempleName("Ganesh Temple");
 		expedctedModel.setTempleTimings("15:30-18:00");
 		res[0] = new Object[] 
@@ -43,10 +43,10 @@ public class TempleSearchServiceImplTest extends AbstractTestNGSpringContextTest
 	 * Test to Fetch all the temples data
 	 */
 	@Test(dataProvider="templeModelProvider")
-	void testGetAllTemples(TempleModel expectedModelObject) {
+	void testGetAllTemples(Temple expectedModelObject) {
 		try {
 			templeModelList = templeSearchServiceImpl.getAllTemples();
-			TempleModel tempModel = templeModelList.get(0);
+			Temple tempModel = templeModelList.get(0);
 			Assert.assertEquals(tempModel.getTempleName(), expectedModelObject.getTempleName());
 		} catch (IOException e) {
 			e.printStackTrace();

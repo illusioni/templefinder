@@ -5,7 +5,7 @@ package com.dd.templefinder.models;
  * @author aditya
  *
  */
-public class EventModel {
+public class Event {
 
 	private String eventName;
 	private String eventPrice;

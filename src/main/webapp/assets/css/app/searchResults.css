@@ -9,15 +9,6 @@
     margin-right: auto;
     padding-top: 15%;
 }
-#resultsDiv {
-	background-image: url("/assets/images/hero_image.jpg");
-	background-color: #cccccc;
-	height: 500px;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	position: relative;
-}
 #tableResultsDiv{
-	padding-top:9%;
+	padding-top: 9%;
 }

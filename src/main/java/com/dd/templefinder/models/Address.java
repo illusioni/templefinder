@@ -5,7 +5,7 @@ package com.dd.templefinder.models;
  * @author aditya
  *
  */
-public class AddressModel {
+public class Address {
 
 	private String streetName;
 	private String houseNo;
