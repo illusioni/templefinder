@@ -49,11 +49,20 @@ public class TempleSearchServiceImplTest  {
 
 	@DataProvider(name = "searchDP")
 	Object[][] searchDataProvider() {
-		List<Temple> expectedTemples = new ArrayList<>();
-		expectedTemples.add(mockTemples.get(0));
-		expectedTemples.add(mockTemples.get(2));
+		List<Temple> expectedForH_Temple = new ArrayList<>();
+		expectedForH_Temple.add(mockTemples.get(0));
+		expectedForH_Temple.add(mockTemples.get(2));
+
+		List<Temple> expectedForA = new ArrayList<>();
+		expectedForA.add(mockTemples.get(0));
+		expectedForA.add(mockTemples.get(1));
+
+
 		Object[][] res = new Object[][] {
-				{"h Temple", expectedTemples}
+				{"h Temple", expectedForH_Temple},
+				{"", mockTemples},
+				{"a", expectedForA},
+				{"NotInAnyName", new ArrayList<>()}
 		};
 		return res;
 	}
