@@ -16,14 +16,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.dd.templefinder.models.Temple;
 import com.dd.templefinder.repository.TempleRepositoryI;
 
 @SpringBootTest(classes=TempleSearchServiceImpl.class)
-@WebAppConfiguration
-@ContextConfiguration
 public class TempleSearchServiceImplTest  {
 
 	@Mock
@@ -48,6 +47,25 @@ public class TempleSearchServiceImplTest  {
 		return temples;
 	}
 
+	@DataProvider(name = "searchDP")
+	Object[][] searchDataProvider() {
+		List<Temple> expectedTemples = new ArrayList<>();
+		expectedTemples.add(mockTemples.get(0));
+		expectedTemples.add(mockTemples.get(2));
+		Object[][] res = new Object[][] {
+				{"h Temple", expectedTemples}
+		};
+		return res;
+	}
+
+	@Test(dataProvider = "searchDP")
+	void testSearchTemples(final String searchStr, List<Temple> expected) throws IOException {
+		when(templeRepository.getAllTemples()).thenReturn(mockTemples);
+		List<Temple> res = templeSearchServiceImpl.searchTemples(new Temple(searchStr));
+		Assert.assertEquals(res, expected);
+		verify(templeRepository, atLeastOnce()).getAllTemples();
+	}
+
 	@Test
 	void testGetAllTemples() throws IOException {
 		when(templeRepository.getAllTemples()).thenReturn(mockTemples);
@@ -55,15 +73,4 @@ public class TempleSearchServiceImplTest  {
 		verify(templeRepository, atLeastOnce()).getAllTemples();
 	}
 
-	@Test
-	void testSearchTemples() throws IOException {
-		when(templeRepository.getAllTemples()).thenReturn(mockTemples);
-		List<Temple> res = templeSearchServiceImpl.searchTemples(new Temple("h Temple"));
-		List<Temple> expectedTemples = new ArrayList<>();
-		expectedTemples.add(mockTemples.get(0));
-		expectedTemples.add(mockTemples.get(2));
-		Assert.assertEquals(res.size(), 2);
-		Assert.assertEquals(res, expectedTemples);
-		verify(templeRepository, atLeastOnce()).getAllTemples();
-	}
 }
