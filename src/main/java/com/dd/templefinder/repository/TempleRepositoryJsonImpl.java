@@ -17,10 +17,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * Reads json files and loads it to the models
  */
 @Repository
-public class TempleRepositoryImpl implements TempleRepositoryI {
+public class TempleRepositoryJsonImpl implements TempleRepositoryI {
 
 	/** (non-Javadoc)
-	 * @see com.dd.templefinder.repository.TempleRepositoryI#getAllTempleDetails()
+	 * @see TempleRepositoryI#getAllTemples()
 	 */
 	@Override
 	public List<Temple> getAllTemples() throws IOException {
@@ -28,7 +28,7 @@ public class TempleRepositoryImpl implements TempleRepositoryI {
 		List<Temple> allTempleList = new ArrayList<Temple>();
 		File file = ResourceUtils.getFile("classpath:templeData.json");
 		allTempleList =  Arrays.asList(objectMapper.readValue(file, Temple[].class));
-		return allTempleList; 
+		return allTempleList;
 	}
 
 }

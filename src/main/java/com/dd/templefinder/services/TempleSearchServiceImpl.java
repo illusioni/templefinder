@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
@@ -24,7 +25,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class TempleSearchServiceImpl implements TempleSearchServiceI {
 
-	ObjectMapper objectMapper = new ObjectMapper();
 
 	@Autowired
 	public TempleRepositoryI templeRepository;
