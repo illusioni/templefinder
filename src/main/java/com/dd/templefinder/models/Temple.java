@@ -3,7 +3,7 @@ package com.dd.templefinder.models;
 import java.util.List;
 
 /**
- * 
+ *
  * @author aditya
  *
  */
@@ -14,6 +14,9 @@ public class Temple implements Comparable<Temple>{
 	private Address address;
 	private Event event;
 	private List<String> images;
+
+	public Temple() {}
+	public Temple(String name) { setTempleName(name); }
 
 	public String getTempleName() {
 		return templeName;

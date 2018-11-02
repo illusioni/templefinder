@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,13 +27,13 @@ public class TempleSearchServiceImpl implements TempleSearchServiceI {
 	ObjectMapper objectMapper = new ObjectMapper();
 
 	@Autowired
-	public TempleRepositoryI templeRepository;	
+	public TempleRepositoryI templeRepository;
 
-	/** 
+	/**
 	 *  This method will return all the temples data that is
 	 *  available in the database
-	 *  
-	 *  @return list of all temples 
+	 *
+	 *  @return list of all temples
 	 *  @see com.dd.templefinder.services.TempleSearchServiceI#getAllTemples()
 	 */
 	@Override
@@ -46,16 +48,13 @@ public class TempleSearchServiceImpl implements TempleSearchServiceI {
 		return allTempleList;
 	}
 
-	/** 
-	 * @see com.dd.templefinder.services.TempleSearchServiceI#searchTemples(java.lang.String)
+	/**
+	 * @see com.dd.templefinder.services.TempleSearchServiceI#searchTemples(Temple)
 	 */
 	@Override
-	public Temple searchTemples(Temple searchModel) throws IOException{
-		List<Temple> templeList = new ArrayList<Temple>();
-		File file = ResourceUtils.getFile("classpath:templeData.json");	
-		templeList = Arrays.asList(objectMapper.readValue(file, Temple[].class));
-		Collections.sort(templeList);
-		int index = Collections.binarySearch(templeList, searchModel);
-		return templeList.get(index);
+	public List<Temple> searchTemples(Temple searchModel) throws IOException {
+		Stream<Temple> allTemplesStream = templeRepository.getAllTemples().stream();
+		Stream<Temple> filteredStream = allTemplesStream.filter(t -> t.getTempleName().contains(searchModel.getTempleName()));
+		return filteredStream.collect(Collectors.toList());
 	}
 }

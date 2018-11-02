@@ -21,12 +21,12 @@ import com.dd.templefinder.services.TempleSearchServiceI;
  */
 @Controller
 public class TempleSearchController {
-	
+
 	private static final Logger logger = LogManager.getLogger(TempleSearchController.class);
-	
+
 	@Autowired
 	private TempleSearchServiceI templeService;
-	
+
 	/**
 	 * @param model
 	 * @return
@@ -37,8 +37,8 @@ public class TempleSearchController {
     	List<Temple> templeList = templeService.getAllTemples();
     	model.addAttribute("templeList",templeList);
 		return "searchResults";
-		
 	}
+
 	/**
 	 * @param model
 	 * @return
@@ -47,8 +47,8 @@ public class TempleSearchController {
 	public String searchTemplesList(@PathVariable("search") String searchString, Model model) throws IOException {
 		Temple tempelSearch = new Temple();
 		tempelSearch.setTempleName(searchString);
-		Temple templeResult = templeService.searchTemples(tempelSearch);
-		model.addAttribute("temple",templeResult);
-		return "templeDetailedPage";
+		List<Temple> templeResult = templeService.searchTemples(tempelSearch);
+		model.addAttribute("templeList",templeResult);
+		return "searchResults";
 	}
 }
