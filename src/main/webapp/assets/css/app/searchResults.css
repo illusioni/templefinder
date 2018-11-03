@@ -12,3 +12,11 @@
 #tableResultsDiv{
 	padding-top: 9%;
 }
+a {
+	 color:#38E25B;
+	 text-decoration: underline;
+	 font-style: italic;
+}
+a:hover{
+	color: white;
+}
