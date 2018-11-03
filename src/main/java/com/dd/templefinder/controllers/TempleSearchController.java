@@ -45,9 +45,7 @@ public class TempleSearchController {
 	 */
 	@RequestMapping(value = "/getTemples/{search}", method = RequestMethod.GET)
 	public String searchTemplesList(@PathVariable("search") String searchString, Model model) throws IOException {
-		Temple tempelSearch = new Temple();
-		tempelSearch.setTempleName(searchString);
-		List<Temple> templeResult = templeService.searchTemples(tempelSearch);
+		List<Temple> templeResult = templeService.searchTemples(searchString);
 		model.addAttribute("templeList",templeResult);
 		return "searchResults";
 	}

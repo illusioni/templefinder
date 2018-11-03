@@ -70,7 +70,7 @@ public class TempleSearchServiceImplTest  {
 	@Test(dataProvider = "searchDP")
 	void testSearchTemples(final String searchStr, List<Temple> expected) throws IOException {
 		when(templeRepository.getAllTemples()).thenReturn(mockTemples);
-		List<Temple> res = templeSearchServiceImpl.searchTemples(new Temple(searchStr));
+		List<Temple> res = templeSearchServiceImpl.searchTemples(searchStr);
 		Assert.assertEquals(res, expected);
 		verify(templeRepository, atLeastOnce()).getAllTemples();
 	}

@@ -1,22 +1,16 @@
 package com.dd.templefinder.services;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ResourceUtils;
 
 import com.dd.templefinder.models.Temple;
 import com.dd.templefinder.repository.TempleRepositoryI;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * @author aditya
@@ -36,6 +30,8 @@ public class TempleSearchServiceImpl implements TempleSearchServiceI {
 	 *  @return list of all temples
 	 *  @see com.dd.templefinder.services.TempleSearchServiceI#getAllTemples()
 	 */
+	
+	
 	@Override
 	public List<Temple> getAllTemples()  {
 		List<Temple> allTempleList = new ArrayList<Temple>();
@@ -52,9 +48,10 @@ public class TempleSearchServiceImpl implements TempleSearchServiceI {
 	 * @see com.dd.templefinder.services.TempleSearchServiceI#searchTemples(Temple)
 	 */
 	@Override
-	public List<Temple> searchTemples(Temple searchModel) throws IOException {
+	public List<Temple> searchTemples(String searchString) throws IOException {
 		Stream<Temple> allTemplesStream = templeRepository.getAllTemples().stream();
-		Stream<Temple> filteredStream = allTemplesStream.filter(t -> t.getTempleName().contains(searchModel.getTempleName()));
+		Stream<Temple> filteredStream = allTemplesStream
+				.filter(t -> (t.getTempleName().toLowerCase()).contains(searchString.toLowerCase()));
 		return filteredStream.collect(Collectors.toList());
 	}
 }

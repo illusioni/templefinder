@@ -21,12 +21,6 @@ public class TemplefinderApplication {
 	@Autowired
 	TempleRepositoryI repo;
 
-	@PostConstruct
-	public void printProfileInfo() {
-		System.out.println(">>>> " + profile);
-		System.out.println(">>>> " + repo.getClass().getName());
-	}
-
 	/**
 	 * @param args
 	 */
