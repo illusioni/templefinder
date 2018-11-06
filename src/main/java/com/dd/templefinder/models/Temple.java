@@ -62,4 +62,9 @@ public class Temple implements Comparable<Temple>{
 	public int compareTo(Temple temple) {
 		return this.templeName.compareTo(temple.templeName);
 	}
+	
+	@Override 
+	public String toString() {
+		return "TempleName::" + getTempleName();
+	}
 }
