@@ -1,6 +1,7 @@
 [{
 	"templeName": "Ganesh Temple",
 	"templeTimings": "15:30-18:00",
+	"simpleAddress": "Lessingstraße",
 	"address": {
 		"streetName": "Lessingstraße",
 		"houseNo": "9c",
@@ -21,6 +22,7 @@
 {
 	"templeName": "Sri Krishna Meditation center",
 	"templeTimings": "14:30-18:00",
+	"simpleAddress": "GoetheStraße",
 	"address": {
 		"streetName": "GoetheStraße",
 		"houseNo": "45",
@@ -40,8 +42,9 @@
 },{
 	"templeName": "Lakshmi Ganesh Temple",
 	"templeTimings": "10:00-18:30",
+	"simpleAddress": "Munchenerstrase",
 	"address": {
-		"streetName": "Munchenstrase",
+		"streetName": "Munchenerstrase",
 		"houseNo": "2b",
 		"postalCode": "52011",
 		"cityName": "Munich"

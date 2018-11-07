@@ -2,6 +2,8 @@ package com.dd.templefinder.models;
 
 import java.util.List;
 
+import com.dd.templefinder.commons.AppUtils;
+
 /**
  *
  * @author aditya
@@ -11,9 +13,11 @@ public class Temple implements Comparable<Temple>{
 
 	private String templeName;
 	private String templeTimings;
+	private String simpleAddress;
 	private Address address;
 	private Event event;
 	private List<String> images;
+	private String normalizedString; 
 
 	public Temple() {}
 	public Temple(String name) { setTempleName(name); }
@@ -58,13 +62,34 @@ public class Temple implements Comparable<Temple>{
 	public void setImages(List<String> images) {
 		this.images = images;
 	}
+	public String getSimpleAddress() {
+		return simpleAddress;
+	}
+	public void setSimpleAddress(String simpleAddress) {
+		this.simpleAddress = simpleAddress;
+	}
+	public String getNormalizedString() {
+		return normalizedString;
+	}
+	public void setNormalizedString(String normalizedString) {
+		this.normalizedString = normalizedString;
+	}
 	@Override
 	public int compareTo(Temple temple) {
 		return this.templeName.compareTo(temple.templeName);
 	}
-	
+	//Added for debugging purpose
 	@Override 
 	public String toString() {
 		return "TempleName::" + getTempleName();
 	}
+
+	public String normalizeTemple(Temple t) {
+		return new StringBuilder()
+				.append(AppUtils.normalizeString(t.getTempleName()))
+				.append(AppUtils.normalizeString(t.getSimpleAddress()))
+				.append(AppUtils.normalizeString(t.getTempleTimings()))
+				.toString();
+	}
+
 }
