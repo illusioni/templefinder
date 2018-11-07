@@ -41,9 +41,10 @@ public class TempleRepositoryJsonImpl implements TempleRepositoryI {
 			LOG.info("Temples data from the Repository is :" + allTempleList);
 
 			long elapsedTime = System.currentTimeMillis() - lStartTime;
-
-			LOG.debug("Elapsed time in milliseconds to read the JSON file->>" + elapsedTime);
-			LOG.debug("File read successfull with ->>" + allTempleList + " temples and the data is::" + allTempleList);
+			if(LOG.isDebugEnabled()) {
+				LOG.debug("Elapsed time in milliseconds to read the JSON file->>" + elapsedTime);
+				LOG.debug("File read successfull with ->>" + allTempleList + " temples and the data is::" + allTempleList);
+			}
 
 		} catch(IOException e) {
 			LOG.warn("Repository failed to read the JSON file " + e);

@@ -46,8 +46,9 @@ public class TempleSearchServiceImpl implements TempleSearchServiceI {
 		} catch (IOException e) {
 			LOG.warn("Service:GetAllTemples failed with->>" + e);
 		}
-
-		LOG.debug("Repository call is successfull with->>" +allTempleList.size()+" temples and the data is::" + allTempleList);
+        if(LOG.isDebugEnabled()) {
+        	LOG.debug("Repository call is successfull with->>" +allTempleList.size()+" temples and the data is::" + allTempleList);
+        }
 		LOG.debug("Servcie:getAlltemples()::completed");
 		return allTempleList;
 	}

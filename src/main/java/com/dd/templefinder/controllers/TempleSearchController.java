@@ -41,7 +41,9 @@ public class TempleSearchController {
 		LOG.info("Service call succesfull to get all temples" + templeList);
 		model.addAttribute("templeList", templeList);
 
-		LOG.debug("searchResults.jsp is served with ->>" + templeList);
+		if(LOG.isDebugEnabled()) {
+			LOG.debug("searchResults.jsp is served with ->>" + templeList);
+		}
 		LOG.debug("Controller:fetchAllTempleData()::complete");
 		return "searchResults";
 	}
@@ -53,16 +55,17 @@ public class TempleSearchController {
 	@RequestMapping(value = "/getTemples/{search}", method = RequestMethod.GET)
 	public String searchTemplesList(@PathVariable("search") String searchString, Model model) throws IOException {
 		LOG.info("Request reached search controller");
-		LOG.debug("Controller:searchTemplesList()::invoked with searchString= " + searchString);
-
+		if(LOG.isDebugEnabled()) {
+			LOG.debug("Controller:searchTemplesList()::invoked with searchString= " + searchString);
+		}
 		List<Temple> templeResult = templeService.searchTemples(searchString);
 		LOG.info("Service call succesfull to get filtered temples based on user input" + templeResult);
 
 		model.addAttribute("templeList", templeResult);
-
-		LOG.debug("The filter response for searchString->>" + searchString + "::size is:" + templeResult.size() +"with tempes->>" + templeResult);
+		if(LOG.isDebugEnabled()) {
+			LOG.debug("The filter response for searchString->>" + searchString + "::size is:" + templeResult.size() +"with tempes->>" + templeResult);
+		}
 		LOG.debug("Controller:searchTemplesList()::complete");
-
 		return "searchResults";
 	}
 }
