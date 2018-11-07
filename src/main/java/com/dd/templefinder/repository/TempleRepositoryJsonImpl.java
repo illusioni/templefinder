@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.ResourceUtils;
 
 import com.dd.templefinder.models.Temple;
-import com.dd.templefinder.services.TempleSearchServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -37,7 +37,11 @@ public class TempleRepositoryJsonImpl implements TempleRepositoryI {
 			long lStartTime = System.currentTimeMillis();
 			File file = ResourceUtils.getFile("classpath:templeData.json");
 			allTempleList =  Arrays.asList(objectMapper.readValue(file, Temple[].class));
-
+			allTempleList.stream()
+						 .map(temple -> {
+							temple.setNormalizedString(temple.normalizeTemple(temple));
+							return temple;
+						 }).collect(Collectors.toList());
 			LOG.info("Temples data from the Repository is :" + allTempleList);
 
 			long elapsedTime = System.currentTimeMillis() - lStartTime;
