@@ -7,7 +7,7 @@ import com.dd.templefinder.models.Temple;
 
 public interface TempleSearchServiceI {
 
-	List<Temple> getAllTemples();
+	List<Temple> getAllTemples() throws IOException;
 
 	List<Temple> searchTemples(String searchString) throws IOException;
 

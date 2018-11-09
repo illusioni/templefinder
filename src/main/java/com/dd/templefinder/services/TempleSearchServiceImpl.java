@@ -36,19 +36,15 @@ public class TempleSearchServiceImpl implements TempleSearchServiceI {
 	 *  @see com.dd.templefinder.services.TempleSearchServiceI#getAllTemples()
 	 */
 	@Override
-	public List<Temple> getAllTemples()  {
+	public List<Temple> getAllTemples()  throws IOException{
 		LOG.debug("Servcie:getAllTemples()::invoked");
 		List<Temple> allTempleList = new ArrayList<Temple>();
-		try {
-			allTempleList = templeRepository.getAllTemples();
-			LOG.info("Repository call is successfull and templelist is returned");
+		allTempleList = templeRepository.getAllTemples();
+		LOG.info("Repository call is successfull and templelist is returned");
 
-		} catch (IOException e) {
-			LOG.warn("Service:GetAllTemples failed with->>" + e);
+		if(LOG.isDebugEnabled()) {
+			LOG.debug("Repository call is successfull with->>" +allTempleList.size()+" temples and the data is::" + allTempleList);
 		}
-        if(LOG.isDebugEnabled()) {
-        	LOG.debug("Repository call is successfull with->>" +allTempleList.size()+" temples and the data is::" + allTempleList);
-        }
 		LOG.debug("Servcie:getAlltemples()::completed");
 		return allTempleList;
 	}

@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dd.templefinder.models.Temple;
 import com.dd.templefinder.services.TempleSearchServiceI;
@@ -33,12 +34,18 @@ public class TempleSearchController {
 	 * @return
 	 */
 	@RequestMapping(value = "/getAllTemples", method = RequestMethod.GET)
-	public String fetchAllTempleData(Model model) throws IOException {
+	public String fetchAllTempleData(Model model,RedirectAttributes redirectAttributes) {
 		LOG.info("Request reached search controller");
 		LOG.debug("Controller:fetchAllTempleData()::invoked");
 
-		List<Temple> templeList = templeService.getAllTemples();
-
+		List<Temple> templeList = new ArrayList<Temple>();
+		try {
+			templeList = templeService.getAllTemples();
+		} catch (IOException e) {
+			redirectAttributes.addFlashAttribute("errorMessage","No Temples found. Please try again");
+			LOG.error("Could not read the Repo to get the temples" + e);
+			return "redirect:/";
+		}
 		LOG.info("Service call succesfull to get all temples" + templeList);
 		model.addAttribute("templeList", templeList);
 
@@ -54,7 +61,7 @@ public class TempleSearchController {
 	 * @return
 	 */
 	@RequestMapping(value = "/getTemples/{search}", method = RequestMethod.GET)
-	public String searchTemplesList(@PathVariable("search") String searchString, Model model)  {
+	public String searchTemplesList(@PathVariable("search") String searchString, Model model,RedirectAttributes redirectAttributes)  {
 		LOG.info("Request reached search controller");
 		if(LOG.isDebugEnabled()) {
 			LOG.debug("Controller:searchTemplesList()::invoked with searchString= " + searchString);
@@ -63,8 +70,9 @@ public class TempleSearchController {
 		try {
 			templeResult = templeService.searchTemples(searchString);
 		} catch (IOException e) {
-			model.addAttribute("errorMessage","No Temples found. Please try again");
+			redirectAttributes.addFlashAttribute("errorMessage","No Temples found. Please try again");
 			LOG.error("Could not read the Repo to get the temples" + e);
+			return "redirect:/";
 		}
 		LOG.info("Service call succesfull to get filtered temples based on user input" + templeResult);
 

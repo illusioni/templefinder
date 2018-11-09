@@ -28,10 +28,17 @@
 					</button>
 				</nav>
 				<form id="searchForm" class="entireForm backGroundHeroImage">
+					<div>
+						<c:if test="${not empty errorMessage}">
+							<div class="errorMessage">
+								<c:out value="${errorMessage}"></c:out>
+							</div>
+						</c:if>
+					</div>
 					<div class="form-group text-center">
-						<label class="subHeadingCity">Find Temples in your city</label> 
-						<input type="text"
-							class="form-control" id="searchText" placeholder="Temple Name">
+						<label class="subHeadingCity">Find Temples in your city</label> <input
+							type="text" class="form-control" id="searchText"
+							placeholder="Temple Name">
 					</div>
 					<div class="text-center">
 						<button type="button" id="searchButton"
