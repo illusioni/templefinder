@@ -1,6 +1,7 @@
 package com.dd.templefinder.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -53,12 +54,18 @@ public class TempleSearchController {
 	 * @return
 	 */
 	@RequestMapping(value = "/getTemples/{search}", method = RequestMethod.GET)
-	public String searchTemplesList(@PathVariable("search") String searchString, Model model) throws IOException {
+	public String searchTemplesList(@PathVariable("search") String searchString, Model model)  {
 		LOG.info("Request reached search controller");
 		if(LOG.isDebugEnabled()) {
 			LOG.debug("Controller:searchTemplesList()::invoked with searchString= " + searchString);
 		}
-		List<Temple> templeResult = templeService.searchTemples(searchString);
+		List<Temple> templeResult = new ArrayList<Temple>();
+		try {
+			templeResult = templeService.searchTemples(searchString);
+		} catch (IOException e) {
+			model.addAttribute("errorMessage","No Temples found. Please try again");
+			LOG.error("Could not read the Repo to get the temples" + e);
+		}
 		LOG.info("Service call succesfull to get filtered temples based on user input" + templeResult);
 
 		model.addAttribute("templeList", templeResult);

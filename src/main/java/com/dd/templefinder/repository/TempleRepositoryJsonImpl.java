@@ -33,7 +33,6 @@ public class TempleRepositoryJsonImpl implements TempleRepositoryI {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		List<Temple> allTempleList = new ArrayList<Temple>();
-		try {
 			long lStartTime = System.currentTimeMillis();
 			File file = ResourceUtils.getFile("classpath:templeData.json");
 			allTempleList =  Arrays.asList(objectMapper.readValue(file, Temple[].class));
@@ -50,9 +49,6 @@ public class TempleRepositoryJsonImpl implements TempleRepositoryI {
 				LOG.debug("File read successfull with ->>" + allTempleList + " temples and the data is::" + allTempleList);
 			}
 
-		} catch(IOException e) {
-			LOG.warn("Repository failed to read the JSON file " + e);
-		}
 		LOG.info("Repository sucessfully read the temples data");
 		LOG.debug("Repository:getAllTemples()::completed");
 
