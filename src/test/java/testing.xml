@@ -5,6 +5,7 @@
    <test name = "Test1">
       <classes>
          <class name = "com.dd.templefinder.services.TempleSearchServiceImplTest"/>
+         <class name = "com.dd.templefinder.repository.TempleRepositoryJsonImplTest"/>
       </classes>
    </test>
 </suite>

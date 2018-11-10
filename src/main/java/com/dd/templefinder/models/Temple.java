@@ -21,6 +21,11 @@ public class Temple implements Comparable<Temple>{
 
 	public Temple() {}
 	public Temple(String name) { setTempleName(name); }
+	public Temple(String name, String address, String normalizedString) {
+		this.templeName = name;
+		this.simpleAddress = address;
+		this.normalizedString = normalizedString;
+	}
 
 	public String getTempleName() {
 		return templeName;
@@ -84,11 +89,11 @@ public class Temple implements Comparable<Temple>{
 		return "TempleName::" + getTempleName();
 	}
 
-	public String normalizeTemple(Temple t) {
-		return new StringBuilder()
-				.append(AppUtils.normalizeString(t.getTempleName()))
-				.append(AppUtils.normalizeString(t.getSimpleAddress()))
-				.append(AppUtils.normalizeString(t.getTempleTimings()))
+	public void normalize() {
+		this.normalizedString = new StringBuilder()
+				.append(AppUtils.normalizeString(this.getTempleName()))
+				.append(AppUtils.normalizeString(this.getSimpleAddress()))
+				.append(AppUtils.normalizeString(this.getTempleTimings()))
 				.toString();
 	}
 

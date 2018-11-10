@@ -33,21 +33,16 @@ public class TempleRepositoryJsonImpl implements TempleRepositoryI {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		List<Temple> allTempleList = new ArrayList<Temple>();
-			long lStartTime = System.currentTimeMillis();
-			File file = ResourceUtils.getFile("classpath:templeData.json");
-			allTempleList =  Arrays.asList(objectMapper.readValue(file, Temple[].class));
-			allTempleList.stream()
-						 .map(temple -> {
-							temple.setNormalizedString(temple.normalizeTemple(temple));
-							return temple;
-						 }).collect(Collectors.toList());
-			LOG.info("Temples data from the Repository is :" + allTempleList);
-
-			long elapsedTime = System.currentTimeMillis() - lStartTime;
-			if(LOG.isDebugEnabled()) {
-				LOG.debug("Elapsed time in milliseconds to read the JSON file->>" + elapsedTime);
-				LOG.debug("File read successfull with ->>" + allTempleList + " temples and the data is::" + allTempleList);
-			}
+		long lStartTime = System.currentTimeMillis();
+		File file = ResourceUtils.getFile("classpath:templeData.json");
+		allTempleList =  Arrays.asList(objectMapper.readValue(file, Temple[].class));
+		allTempleList.stream()
+					 .forEach(temple -> { temple.normalize(); });
+		long elapsedTime = System.currentTimeMillis() - lStartTime;
+		if(LOG.isDebugEnabled()) {
+			LOG.debug("Elapsed time in milliseconds to read the JSON file->>" + elapsedTime);
+			LOG.debug("File read successfull with ->>" + allTempleList + " temples and the data is::" + allTempleList);
+		}
 
 		LOG.info("Repository sucessfully read the temples data");
 		LOG.debug("Repository:getAllTemples()::completed");
