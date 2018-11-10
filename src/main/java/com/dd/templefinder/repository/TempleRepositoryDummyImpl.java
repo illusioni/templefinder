@@ -27,15 +27,13 @@ public class TempleRepositoryDummyImpl implements TempleRepositoryI {
 	}
 
 	private List<Temple> createDummyTemples(){
-		Temple templeOne = new Temple();
-		templeOne.setTempleName("Ganesh Temple");
-		templeOne.setTempleTimings("15:00-17:00");
-		Temple templeTwo = new Temple();
-		templeTwo.setTempleName("Krishna Center");
-		templeTwo.setTempleTimings("10:00-12:00");
+		Temple templeOne = new Temple("Ganesh Temple","02:00-18:00","Bahnhof Strasse");
+		Temple templeTwo = new Temple("Hindu Temple","15:00-19:00","Schwarz Straße");
 		List<Temple> dummyTemples = new ArrayList<>();
 		dummyTemples.add(templeOne);
 		dummyTemples.add(templeTwo);
+		dummyTemples.stream()
+		 .forEach(temple -> {temple.normalize(); });
 		return dummyTemples;
 	}
 

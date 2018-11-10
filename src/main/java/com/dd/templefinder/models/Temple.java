@@ -21,8 +21,14 @@ public class Temple implements Comparable<Temple>{
 
 	public Temple() {}
 	public Temple(String name) { setTempleName(name); }
-	public Temple(String name, String address, String normalizedString) {
+	public Temple(String name, String timings, String address) {
 		this.templeName = name;
+		this.templeTimings = timings;
+		this.simpleAddress = address;
+	}
+	public Temple(String name, String timings, String address, String normalizedString) {
+		this.templeName = name;
+		this.templeTimings = timings;
 		this.simpleAddress = address;
 		this.normalizedString = normalizedString;
 	}
