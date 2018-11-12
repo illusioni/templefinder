@@ -7,3 +7,7 @@
 	background-size: cover;
 	position: relative;
 }
+#companyLogo {
+	cursor:pointer;
+	font-style: italic;
+}

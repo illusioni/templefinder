@@ -18,7 +18,7 @@
 			<div class="col-md-12">
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
 					<a class="navbar-brand"
-						style="color: #2980B9; font-family: 'Bungee Inline'; font-size: 29px">Temple
+						style="color: #2980B9; font-family: 'Bungee Inline'; font-size: 29px" id="companyLogo">Temple
 						Finder</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarSupportedContent"
