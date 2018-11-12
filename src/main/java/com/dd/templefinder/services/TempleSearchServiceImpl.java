@@ -2,6 +2,7 @@ package com.dd.templefinder.services;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -11,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dd.templefinder.commons.AppUtils;
 import com.dd.templefinder.controllers.TempleSearchController;
 import com.dd.templefinder.models.Temple;
 import com.dd.templefinder.repository.TempleRepositoryI;
@@ -55,13 +57,21 @@ public class TempleSearchServiceImpl implements TempleSearchServiceI {
 	@Override
 	public List<Temple> searchTemples(String searchString) throws IOException {
 		LOG.debug("Service:searchTemples()::invoked");
-
 		Stream<Temple> allTemplesStream = templeRepository.getAllTemples().stream();
 		Stream<Temple> filteredStream = allTemplesStream
-				.filter(t -> (t.getTempleName().toLowerCase()).contains(searchString.toLowerCase()));
-
+				.filter(t -> (this.filterTemplesBySearch(t,searchString)));
 		LOG.info(" Repository call is successfull Temples filterted successfully with user input");
 		LOG.debug("Service:searchTemples()::completed");
 		return filteredStream.collect(Collectors.toList());
+	}
+
+	private boolean filterTemplesBySearch(Temple t, String searchString ) {
+		String[] searchWords = AppUtils.splitSearch(searchString.trim());
+		for (String eachWord : searchWords) {
+			if(t.getNormalizedString().contains(eachWord)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

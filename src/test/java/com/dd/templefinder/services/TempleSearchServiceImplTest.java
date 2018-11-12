@@ -41,9 +41,9 @@ public class TempleSearchServiceImplTest  {
 
 	private List<Temple> createTestTempleList(){
 		List<Temple> temples = new ArrayList<>();
-		temples.add(new Temple("Ganesh Temple"));
-		temples.add(new Temple("Krishna Center"));
-		temples.add(new Temple("Shivh Temple"));
+		temples.add(new Temple("Ganesh Temple","02:00-18:00","Goethe Straße","ganeshtemple02:00-18:00goethestraße"));
+		temples.add(new Temple("Krisna Center","15:00-19:00","Augsburger Str","krisnacenter15:00-19:00augsburgerstr"));
+		temples.add(new Temple("Shivh Temple","16:00-19:00","Munchner Strasse","shivhtemple16:00-19:00munchnerstrasse"));
 		return temples;
 	}
 
@@ -54,14 +54,13 @@ public class TempleSearchServiceImplTest  {
 		expectedForH_Temple.add(mockTemples.get(2));
 
 		List<Temple> expectedForA = new ArrayList<>();
-		expectedForA.add(mockTemples.get(0));
 		expectedForA.add(mockTemples.get(1));
 
 
 		Object[][] res = new Object[][] {
 				{"h Temple", expectedForH_Temple},
 				{"", mockTemples},
-				{"a", expectedForA},
+				{"na", expectedForA},
 				{"NotInAnyName", new ArrayList<>()}
 		};
 		return res;
@@ -69,7 +68,7 @@ public class TempleSearchServiceImplTest  {
 
 	@Test(dataProvider = "searchDP")
 	void testSearchTemples(final String searchStr, List<Temple> expected) throws IOException {
-		when(templeRepository.getAllTemples()).thenReturn(mockTemples);
+		when(templeRepository.getAllTemples()).thenReturn(mockTemples);	
 		List<Temple> res = templeSearchServiceImpl.searchTemples(searchStr);
 		Assert.assertEquals(res, expected);
 		verify(templeRepository, atLeastOnce()).getAllTemples();
