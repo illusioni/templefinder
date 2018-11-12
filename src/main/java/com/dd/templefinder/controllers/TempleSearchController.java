@@ -77,6 +77,10 @@ public class TempleSearchController {
 		LOG.info("Service call succesfull to get filtered temples based on user input" + templeResult);
 
 		model.addAttribute("templeList", templeResult);
+		if(templeResult.isEmpty()) {
+			redirectAttributes.addFlashAttribute("errorMessage","No Temples found. Please try again");
+			return "redirect:/";
+		}
 		if(LOG.isDebugEnabled()) {
 			LOG.debug("The filter response for searchString->>" + searchString + "::size is:" + templeResult.size() +"with tempes->>" + templeResult);
 		}
