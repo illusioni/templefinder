@@ -33,9 +33,9 @@ public class TempleRepositoryJsonImplTest extends AbstractTestNGSpringContextTes
 
 	private List<Temple> createTestTempleList(){
 		List<Temple> temples = new ArrayList<>();
-		temples.add(new Temple("Vishnu Temple","02:00-18:00","Goethe Straße","vishnutemplegoethestraße02:00-18:00"));
-		temples.add(new Temple("Srirama Temple","15:00-19:00","Augsburger Str","sriramatempleaugsburgerstr15:00-19:00"));
-		temples.add(new Temple("Hanuman Temple","16:00-19:00","Munchner Strasse","hanumantemplemunchnerstrasse16:00-19:00"));
+		temples.add(new Temple("Vishnu Temple","Goethe Straße","02:00-18:00","vishnutemplegoethestraße02:00-18:00"));
+		temples.add(new Temple("Srirama Temple","Augsburger Str","15:00-19:00","sriramatempleaugsburgerstr15:00-19:00"));
+		temples.add(new Temple("Hanuman Temple","Munchner Strasse","16:00-19:00","hanumantemplemunchnerstrasse16:00-19:00"));
 		return temples;
 	}
 	

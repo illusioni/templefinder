@@ -41,9 +41,9 @@ public class TempleSearchServiceImplTest  {
 
 	private List<Temple> createTestTempleList(){
 		List<Temple> temples = new ArrayList<>();
-		temples.add(new Temple("Ganesh Temple","02:00-18:00","Goethe Straße","ganeshtemple02:00-18:00goethestraße"));
-		temples.add(new Temple("Krisna Center","15:00-19:00","Augsburger Str","krisnacenter15:00-19:00augsburgerstr"));
-		temples.add(new Temple("Shivh Temple","16:00-19:00","Munchner Strasse","shivhtemple16:00-19:00munchnerstrasse"));
+		temples.add(new Temple("Ganesh Temple","Goethe Straße","02:00-18:00","ganeshtemplegoethestraße02:00-18:00"));
+		temples.add(new Temple("Krisna Center","Augsburger Str","15:00-19:00","krisnacenteraugsburgerstr15:00-19:00"));
+		temples.add(new Temple("Shivh Temple","Munchner Strasse","16:00-19:00","shivhtemplemunchnerstrasse16:00-19:00"));
 		return temples;
 	}
 
