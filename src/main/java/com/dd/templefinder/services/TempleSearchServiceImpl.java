@@ -2,6 +2,7 @@ package com.dd.templefinder.services;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,15 +40,11 @@ public class TempleSearchServiceImpl implements TempleSearchServiceI {
 	 */
 	@Override
 	public List<Temple> getAllTemples()  throws IOException{
-		LOG.debug("Servcie:getAllTemples()::invoked");
-		List<Temple> allTempleList = new ArrayList<Temple>();
-		allTempleList = templeRepository.getAllTemples();
-		LOG.info("Repository call is successfull and templelist is returned");
+		List<Temple> allTempleList = templeRepository.getAllTemples();
 
 		if(LOG.isDebugEnabled()) {
 			LOG.debug("Repository call is successfull with->>" +allTempleList.size()+" temples and the data is::" + allTempleList);
 		}
-		LOG.debug("Servcie:getAlltemples()::completed");
 		return allTempleList;
 	}
 
@@ -56,22 +53,16 @@ public class TempleSearchServiceImpl implements TempleSearchServiceI {
 	 */
 	@Override
 	public List<Temple> searchTemples(String searchString) throws IOException {
-		LOG.debug("Service:searchTemples()::invoked");
+		String[] searchWords = AppUtils.splitSearch(searchString.trim());
+		
 		Stream<Temple> allTemplesStream = templeRepository.getAllTemples().stream();
 		Stream<Temple> filteredStream = allTemplesStream
-				.filter(t -> (this.filterTemplesBySearch(t,searchString)));
-		LOG.info(" Repository call is successfull Temples filterted successfully with user input");
-		LOG.debug("Service:searchTemples()::completed");
+				.filter(t -> (this.containsSearchWord(t, searchWords)));
+		
 		return filteredStream.collect(Collectors.toList());
 	}
 
-	private boolean filterTemplesBySearch(Temple t, String searchString ) {
-		String[] searchWords = AppUtils.splitSearch(searchString.trim());
-		for (String eachWord : searchWords) {
-			if(t.getNormalizedString().contains(eachWord)) {
-				return true;
-			}
-		}
-		return false;
+	private boolean containsSearchWord(Temple t, String[] searchWords) {
+		return Arrays.asList(searchWords).stream().anyMatch(w -> t.getNormalizedString().contains(w));
 	}
 }

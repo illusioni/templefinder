@@ -34,57 +34,47 @@ public class TempleSearchController {
 	 * @return
 	 */
 	@RequestMapping(value = "/getAllTemples", method = RequestMethod.GET)
-	public String fetchAllTempleData(Model model,RedirectAttributes redirectAttributes) {
-		LOG.info("Request reached search controller");
-		LOG.debug("Controller:fetchAllTempleData()::invoked");
-
-		List<Temple> templeList = new ArrayList<Temple>();
-		try {
-			templeList = templeService.getAllTemples();
-		} catch (IOException e) {
-			redirectAttributes.addFlashAttribute("errorMessage","No Temples found. Please try again");
-			LOG.error("Could not read the Repo to get the temples" + e);
-			return "redirect:/";
+	public String fetchAllTempleData(Model model,RedirectAttributes ra) throws IOException {
+		String res;
+		
+		List<Temple> templeList = templeService.getAllTemples();
+		
+		if(templeList.isEmpty()) {
+			res = redirect(ra, "No Temples found. Please try again", "redirect:/");
+		}else {
+			model.addAttribute("templeList", templeList);
+			res = "searchResults";
 		}
-		LOG.info("Service call succesfull to get all temples" + templeList);
-		model.addAttribute("templeList", templeList);
-
+		
 		if(LOG.isDebugEnabled()) {
 			LOG.debug("searchResults.jsp is served with ->>" + templeList);
 		}
-		LOG.debug("Controller:fetchAllTempleData()::complete");
-		return "searchResults";
+		return res;
 	}
 
 	/**
 	 * @param model
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping(value = "/getTemples/{search}", method = RequestMethod.GET)
-	public String searchTemplesList(@PathVariable("search") String searchString, Model model,RedirectAttributes redirectAttributes)  {
-		LOG.info("Request reached search controller");
-		if(LOG.isDebugEnabled()) {
-			LOG.debug("Controller:searchTemplesList()::invoked with searchString= " + searchString);
-		}
-		List<Temple> templeResult = new ArrayList<Temple>();
-		try {
-			templeResult = templeService.searchTemples(searchString);
-		} catch (IOException e) {
-			redirectAttributes.addFlashAttribute("errorMessage","No Temples found. Please try again");
-			LOG.error("Could not read the Repo to get the temples" + e);
-			return "redirect:/";
-		}
-		LOG.info("Service call succesfull to get filtered temples based on user input" + templeResult);
-
-		model.addAttribute("templeList", templeResult);
+	public String searchTemplesList(@PathVariable("search") String searchString, Model model, RedirectAttributes ra) throws IOException  {
+		List<Temple> templeResult = templeService.searchTemples(searchString);
+		String res;
 		if(templeResult.isEmpty()) {
-			redirectAttributes.addFlashAttribute("errorMessage","No Temples found. Please try again");
-			return "redirect:/";
+			res = redirect(ra, "No Temples found. Please try again", "redirect:/");
 		}
-		if(LOG.isDebugEnabled()) {
-			LOG.debug("The filter response for searchString->>" + searchString + "::size is:" + templeResult.size() +"with tempes->>" + templeResult);
+		else {
+			model.addAttribute("templeList", templeResult);
+			res = "searchResults";
 		}
-		LOG.debug("Controller:searchTemplesList()::complete");
-		return "searchResults";
+
+		return res;
+	}
+
+
+	private String redirect(RedirectAttributes redirectAttributes, String message, String redirectUrl) {
+		redirectAttributes.addFlashAttribute("errorMessage", message);
+		return redirectUrl;
 	}
 }

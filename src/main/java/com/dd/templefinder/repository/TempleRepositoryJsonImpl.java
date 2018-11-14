@@ -28,25 +28,11 @@ public class TempleRepositoryJsonImpl implements TempleRepositoryI {
 	 */
 	@Override
 	public List<Temple> getAllTemples() throws IOException {
-
-		LOG.debug("Repository:getAllTemples()::invoked");
-
 		ObjectMapper objectMapper = new ObjectMapper();
-		List<Temple> allTempleList = new ArrayList<Temple>();
-		long lStartTime = System.currentTimeMillis();
 		File file = ResourceUtils.getFile("classpath:templeData.json");
-		allTempleList =  Arrays.asList(objectMapper.readValue(file, Temple[].class));
+		List<Temple> allTempleList =  Arrays.asList(objectMapper.readValue(file, Temple[].class));
 		allTempleList.stream()
 					 .forEach(temple -> { temple.normalize(); });
-		long elapsedTime = System.currentTimeMillis() - lStartTime;
-		if(LOG.isDebugEnabled()) {
-			LOG.debug("Elapsed time in milliseconds to read the JSON file->>" + elapsedTime);
-			LOG.debug("File read successfull with ->>" + allTempleList + " temples and the data is::" + allTempleList);
-		}
-
-		LOG.info("Repository sucessfully read the temples data");
-		LOG.debug("Repository:getAllTemples()::completed");
-
 		return allTempleList;
 	}
 
