@@ -33,23 +33,18 @@ public class TempleTest {
 		temples.add(new Temple("Ganesh Temple","Goethe Straße","02:00-18:00","ganeshtemplegoethestraße02:00-18:00"));
 		temples.add(new Temple("Krisna Center","Augsburger Str","15:00-19:00","krisnacenteraugsburgerstr15:00-19:00"));
 		temples.add(new Temple("Shivh Temple","Munchner Strasse","16:00-19:00","shivhtemplemunchnerstrasse16:00-19:00"));
+		temples.add(new Temple("Rama Mandir","","13:30-20:00","ramamandir13:30-20:00"));
 		return temples;
 	}
 
 	@DataProvider(name = "templesDP")
 	Object[][] searchDataProvider() {
-		List<Temple> expectedForH_Temple = new ArrayList<>();
-		expectedForH_Temple.add(mockTemples.get(0));
-		expectedForH_Temple.add(mockTemples.get(2));
-
-		List<Temple> expectedForA = new ArrayList<>();
-		expectedForA.add(mockTemples.get(1));
-
 
 		Object[][] res = new Object[][] {
 			{mockTemples.get(0), "ganeshtemplegoethestraße02:00-18:00"},
-			{mockTemples.get(1), "krisnacenteraugsburgerstr15:00-19:00"}
-
+			{mockTemples.get(1), "krisnacenteraugsburgerstr15:00-19:00"},
+			{mockTemples.get(2), "shivhtemplemunchnerstrasse16:00-19:00"},
+			{mockTemples.get(3), "ramamandir13:30-20:00"}
 		};
 		return res;
 	}
