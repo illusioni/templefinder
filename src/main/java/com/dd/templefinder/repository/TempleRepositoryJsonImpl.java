@@ -28,12 +28,16 @@ public class TempleRepositoryJsonImpl implements TempleRepositoryI {
 	 */
 	@Override
 	public List<Temple> getAllTemples() throws IOException {
-		ObjectMapper objectMapper = new ObjectMapper();
-		File file = ResourceUtils.getFile("classpath:templeData.json");
-		List<Temple> allTempleList =  Arrays.asList(objectMapper.readValue(file, Temple[].class));
-		allTempleList.stream()
+		List<Temple> allTempleList = this.readFromJsonRepo();
+			allTempleList.stream()
 					 .forEach(temple -> { temple.normalize(); });
 		return allTempleList;
+	}
+	
+	private List<Temple> readFromJsonRepo()  throws IOException {
+		ObjectMapper objectMapper = new ObjectMapper();
+		File file = ResourceUtils.getFile("classpath:templeData.json");
+		return Arrays.asList(objectMapper.readValue(file, Temple[].class));
 	}
 
 }
