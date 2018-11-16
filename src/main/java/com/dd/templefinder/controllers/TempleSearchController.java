@@ -58,7 +58,7 @@ public class TempleSearchController {
 	 * @throws IOException 
 	 */
 	@RequestMapping(value = "/getTemples/{search}", method = RequestMethod.GET)
-	public String searchTemplesList(@PathVariable("search") String searchString, Model model, RedirectAttributes ra) throws IOException  {
+	public String searchTemplesList(@PathVariable("search") String searchString, Model model, RedirectAttributes ra) throws IOException {
 		List<Temple> templeResult = templeService.searchTemples(searchString);
 		String res;
 		if(templeResult.isEmpty()) {

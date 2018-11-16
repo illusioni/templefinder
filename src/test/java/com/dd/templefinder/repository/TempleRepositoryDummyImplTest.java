@@ -25,12 +25,12 @@ public class TempleRepositoryDummyImplTest {
 	private List<Temple> mockTemples;
 
 	@BeforeClass
-	public void setUp(){
+	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 		mockTemples = createTestTempleList();
 	}
 
-	private List<Temple> createTestTempleList(){
+	private List<Temple> createTestTempleList() {
 		List<Temple> temples = new ArrayList<>();
 		temples.add(new Temple("Vishnu Temple","Goethe Straße","02:00-18:00","vishnutemplegoethestraße02:00-18:00"));
 		temples.add(new Temple("Srirama Temple","Augsburger Str","15:00-19:00","sriramatempleaugsburgerstr15:00-19:00"));

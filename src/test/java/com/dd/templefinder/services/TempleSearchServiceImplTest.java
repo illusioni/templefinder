@@ -23,7 +23,7 @@ import com.dd.templefinder.models.Temple;
 import com.dd.templefinder.repository.TempleRepositoryI;
 
 @SpringBootTest(classes=TempleSearchServiceImpl.class)
-public class TempleSearchServiceImplTest  {
+public class TempleSearchServiceImplTest {
 
 	@Mock
 	TempleRepositoryI templeRepository;
@@ -34,12 +34,12 @@ public class TempleSearchServiceImplTest  {
 	private List<Temple> mockTemples;
 
 	@BeforeClass
-	public void setUp(){
+	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 		mockTemples = createTestTempleList();
 	}
 
-	private List<Temple> createTestTempleList(){
+	private List<Temple> createTestTempleList() {
 		List<Temple> temples = new ArrayList<>();
 		temples.add(new Temple("Ganesh Temple","Goethe Straße","02:00-18:00","ganeshtemplegoethestraße02:00-18:00"));
 		temples.add(new Temple("Krisna Center","Augsburger Str","15:00-19:00","krisnacenteraugsburgerstr15:00-19:00"));

@@ -39,7 +39,7 @@ public class TempleSearchServiceImpl implements TempleSearchServiceI {
 	 *  @see com.dd.templefinder.services.TempleSearchServiceI#getAllTemples()
 	 */
 	@Override
-	public List<Temple> getAllTemples()  throws IOException{
+	public List<Temple> getAllTemples()  throws IOException {
 		List<Temple> allTempleList = templeRepository.getAllTemples();
 
 		if(LOG.isDebugEnabled()) {
