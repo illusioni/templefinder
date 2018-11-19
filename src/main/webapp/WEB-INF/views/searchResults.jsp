@@ -35,7 +35,7 @@
 							<thead>
 							</thead>
 							<c:forEach var="temple" items="${templeList}">
-								<tr>
+								<tr onClick="showTempleDetails('${temple.tid}')">
 									<td>${temple.templeName}</td>
 									<td>${temple.address.streetName}</td>
 									<td><img id="templeImage"
