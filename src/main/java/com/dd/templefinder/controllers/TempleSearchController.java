@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.dd.templefinder.commons.TFConstants;
 import com.dd.templefinder.models.Temple;
 import com.dd.templefinder.services.TempleSearchServiceI;
 
@@ -40,10 +41,10 @@ public class TempleSearchController {
 		List<Temple> templeList = templeService.getAllTemples();
 		
 		if(templeList.isEmpty()) {
-			res = redirect(ra, "No Temples found. Please try again", "redirect:/");
+			res = redirect(ra, TFConstants.NO_TEMPLES_FOUND_MSG, TFConstants.REDIRECT_TO_INDEX_JSP);
 		}else {
 			model.addAttribute("templeList", templeList);
-			res = "searchResults";
+			res = TFConstants.SEARCH_RESULTS_JSP;
 		}
 		
 		if(LOG.isDebugEnabled()) {
@@ -62,11 +63,11 @@ public class TempleSearchController {
 		List<Temple> templeResult = templeService.searchTemples(searchString);
 		String res;
 		if(templeResult.isEmpty()) {
-			res = redirect(ra, "No Temples found. Please try again", "redirect:/");
+			res = redirect(ra, TFConstants.NO_TEMPLES_FOUND_MSG, TFConstants.REDIRECT_TO_INDEX_JSP);
 		}
 		else {
 			model.addAttribute("templeList", templeResult);
-			res = "searchResults";
+			res = TFConstants.SEARCH_RESULTS_JSP;
 		}
 
 		return res;
