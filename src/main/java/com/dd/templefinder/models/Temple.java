@@ -11,6 +11,7 @@ import com.dd.templefinder.commons.AppUtils;
  */
 public class Temple implements Comparable<Temple>{
 
+	private String tid;
 	private String templeName;
 	private String templeTimings;
 	private String simpleAddress;
@@ -84,6 +85,12 @@ public class Temple implements Comparable<Temple>{
 	}
 	public void setNormalizedString(String normalizedString) {
 		this.normalizedString = normalizedString;
+	}
+	public String getTid() {
+		return tid;
+	}
+	public void setTid(String tid) {
+		this.tid = tid;
 	}
 	@Override
 	public int compareTo(Temple temple) {

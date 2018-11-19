@@ -1,4 +1,5 @@
 [{
+	"tid" : "tf001",
 	"templeName": "Ganesh Temple",
 	"templeTimings": "15:30-18:00",
 	"simpleAddress": "Lessingstraße",
@@ -20,6 +21,7 @@
 	}
 },
 {
+	"tid" : "tf002",
 	"templeName": "Sri Krishna Meditation center",
 	"templeTimings": "14:30-18:00",
 	"simpleAddress": "GoetheStraße",
@@ -40,6 +42,7 @@
 		"otherDetails": "Temple is open on all day Sunday"
 	}
 },{
+	"tid" : "tf003",
 	"templeName": "Lakshmi Ganesh Temple",
 	"templeTimings": "10:00-18:30",
 	"simpleAddress": "Munchenerstrase",
