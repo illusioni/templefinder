@@ -33,6 +33,14 @@ public class Temple implements Comparable<Temple>{
 		this.simpleAddress = address;
 		this.normalizedString = normalizedString;
 	}
+	
+	public Temple(String tid, String templeName,String address, String timings, String normalizedString) {
+		this.tid = tid;
+		this.templeName = templeName;
+		this.templeTimings = timings;
+		this.simpleAddress = address;
+		this.normalizedString = normalizedString;
+	}
 
 	public String getTempleName() {
 		return templeName;

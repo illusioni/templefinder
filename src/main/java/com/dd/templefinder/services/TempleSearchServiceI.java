@@ -11,4 +11,6 @@ public interface TempleSearchServiceI {
 
 	List<Temple> searchTemples(String searchString) throws IOException;
 
+	Temple getTemple(String TempleId) throws IOException;
+
 }

@@ -78,4 +78,13 @@ public class TempleSearchController {
 		redirectAttributes.addFlashAttribute("errorMessage", message);
 		return redirectUrl;
 	}
+	
+	
+	@RequestMapping(value = "/getTemple/{tId}", method = RequestMethod.GET)
+	public String getTemple(@PathVariable("tId") String templeId, Model model, RedirectAttributes ra) throws IOException {
+		Temple t = templeService.getTemple(templeId);
+		model.addAttribute("temple", t);
+		return TFConstants.TEMPLE_DETAILED_JSP;
+	}
+	
 }

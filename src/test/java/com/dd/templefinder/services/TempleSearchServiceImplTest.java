@@ -41,9 +41,11 @@ public class TempleSearchServiceImplTest {
 
 	private List<Temple> createTestTempleList() {
 		List<Temple> temples = new ArrayList<>();
-		temples.add(new Temple("Ganesh Temple","Goethe Straße","02:00-18:00","ganeshtemplegoethestraße02:00-18:00"));
-		temples.add(new Temple("Krisna Center","Augsburger Str","15:00-19:00","krisnacenteraugsburgerstr15:00-19:00"));
-		temples.add(new Temple("Shivh Temple","Munchner Strasse","16:00-19:00","shivhtemplemunchnerstrasse16:00-19:00"));
+		temples.add(new Temple("t004","Ganesh Temple","Goethe Straße","02:00-18:00","t004ganeshtemplegoethestraße02:00-18:00"));
+		temples.add(new Temple("t005","Krisna Center","Augsburger Str","15:00-19:00","t005krisnacenteraugsburgerstr15:00-19:00"));
+		temples.add(new Temple("t006","Shivh Temple","Munchner Strasse","16:00-19:00","t006shivhtemplemunchnerstrasse16:00-19:00"));
+		temples.add(new Temple("t001","Rama","Berger Strasse","16:00-19:00","t001ramabergerstrasse16:00-19:00"));
+		temples.add(new Temple("t002","Lakshmi","Newton Strasse","16:00-19:00","t002laksminewtonstrasse16:00-19:00"));
 		return temples;
 	}
 
@@ -80,5 +82,23 @@ public class TempleSearchServiceImplTest {
 		Assert.assertEquals(templeSearchServiceImpl.getAllTemples(), mockTemples);
 		verify(templeRepository, atLeastOnce()).getAllTemples();
 	}
+	
+	@DataProvider(name = "searchByIDDP")
+	Object[][] searchByIDDataProvider() {
+		Object[][] res = new Object[][] {
+				{"t001", mockTemples.get(3)},
+				{"t002", mockTemples.get(4)}
+		};
+		return res;
+	}
+	
+	@Test(dataProvider = "searchByIDDP")
+	void testGetTemple(final String searchStr, Temple expected) throws IOException {
+		when(templeRepository.getAllTemples()).thenReturn(mockTemples);
+		Temple res = templeSearchServiceImpl.getTemple(searchStr);
+		Assert.assertEquals(res, expected);
+		verify(templeRepository, atLeastOnce()).getAllTemples();
+	}
+	
 
 }

@@ -54,15 +54,24 @@ public class TempleSearchServiceImpl implements TempleSearchServiceI {
 	@Override
 	public List<Temple> searchTemples(String searchString) throws IOException {
 		String[] searchWords = AppUtils.splitSearch(searchString.trim());
-		
+
 		Stream<Temple> allTemplesStream = templeRepository.getAllTemples().stream();
 		Stream<Temple> filteredStream = allTemplesStream
 				.filter(t -> (this.containsSearchWord(t, searchWords)));
-		
+
 		return filteredStream.collect(Collectors.toList());
 	}
 
 	private boolean containsSearchWord(Temple t, String[] searchWords) {
 		return Arrays.asList(searchWords).stream().anyMatch(w -> t.getNormalizedString().contains(w));
+	}
+
+
+	@Override
+	public Temple getTemple(String tId) throws IOException {
+		Stream<Temple> allTemplesStream = templeRepository.getAllTemples().stream();
+		Temple temple =  allTemplesStream
+				.filter(t -> t.getTid().equals(tId)).findAny().get();
+		return temple;
 	}
 }
