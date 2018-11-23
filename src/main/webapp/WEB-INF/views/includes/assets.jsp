@@ -8,4 +8,5 @@
         <script src="<c:url value='/assets/js/lib/bootstrap.min.js' />" type="text/javascript"></script>
         <script src="<c:url value='/assets/js/app/common.js' />" type="text/javascript"></script>
         <link type="text/css" href="<c:url value='/assets/css/app/common.css' />" rel="stylesheet" />
+        <link rel="icon" href="/assets/images/pray.png">
         
