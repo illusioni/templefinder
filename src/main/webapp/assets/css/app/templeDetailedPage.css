@@ -1,0 +1,35 @@
+#templeImage {
+	width: 400px;
+    height: 250px;
+}
+table {
+	border: 0 !important;
+}
+.table{
+	text-align:center;
+	width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 15%;
+   
+}
+#tableResultsDiv{
+	padding-top: 9%;
+}
+.table td {
+	 border-top: 0 !important;
+}
+.ritualsContainer, .directionContainer {
+	height:400px;
+	width:400px;
+	background-color: #DFDFDF;
+	border-radius: 25px;
+}
+.directionContainer {
+	height:400px;
+	width:400px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
